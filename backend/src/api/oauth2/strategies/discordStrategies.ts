@@ -20,24 +20,27 @@ passport.use(
             scope: ["identify", "guilds"]
         },
         async (accessToken: string, refreshToken: string, profile: Profile, done: (err: any, user?: UserI) => void) => {
-            const User = await Users.findOne({ uId: profile.id });
+            const User: UserI = await Users.findOne({ uId: profile.id });
 
             try {
                 if (User !== null) {
-                    User.avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=2048`.includes("null")
+                    User.avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=64`.includes("null")
                         ? "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png"
-                        : `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=2048`;
+                        : `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=64`;
 
                     User.tag = `${profile.username}#${profile.discriminator}`;
+                    User.guilds = profile.guilds;
+
                     await User.updateOne(User);
                     return done(null, User);
                 } else {
                     const newUser = await Users.create({
                         uId: profile.id,
                         tag: `${profile.username}#${profile.discriminator}`,
-                        avatar: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=2048`.includes("null")
+                        avatar: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=64`.includes("null")
                             ? "https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png"
-                            : `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=2048`,
+                            : `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=64`,
+                        guilds: profile.guilds,
                     });
                     return done(null, newUser);
                 }

@@ -1,0 +1,91 @@
+.guildImages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    padding: 1rem;
+    background-color: #202225;
+
+    width: fit-content;
+    height: 100vh;
+}
+
+.guildImage {
+    order: inherit;
+    flex-direction: column;
+    margin: 5px;
+    transition: ease-out 0.3s;
+}
+
+.guildImage:hover {
+    border-radius: 30% !important;
+}
+
+.profile {
+    padding: 5px;
+    margin-bottom: 15px;
+    transition: ease-out 0.3s;
+}
+
+.profile:hover {
+    border-radius: 30% !important;
+}
+
+.add-to-server {
+    margin-top: 15px;
+    border-radius: 50%;
+    background-color: #2C2F33;
+    stroke: #43b581;
+    fill: #43b581;
+    height: 75px;
+    width: 75px;
+    transition: ease-out 0.3s;
+}
+
+.add-to-server:hover {
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+}
+
+.popup-content {
+    background-color: #2C2F33;
+    border-radius: 10px;
+    stroke: #2C2F33;
+    border: 5px #2C2F33;
+    width: 50vw;
+    height: 45vh;
+    animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+.dropdown-menu {
+    background-color: #2C2F33;
+}
+
+.dropdown-item {
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown-item:hover {
+    background-color: #43b581
+}

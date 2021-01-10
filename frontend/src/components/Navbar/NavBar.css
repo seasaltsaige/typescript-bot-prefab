@@ -1,0 +1,11 @@
+.navbar {
+    height: 75px;
+}
+
+.rounded-circle {
+    cursor: pointer;
+}
+
+.bg-dark {
+    background-color: #23272A !important;
+}

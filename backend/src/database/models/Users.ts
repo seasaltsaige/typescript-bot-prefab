@@ -4,6 +4,7 @@ export interface Users extends Document {
     uId: string;
     avatar: string;
     tag: string;
+    guilds: any[];
 }
 
 const User = new Schema({
@@ -17,6 +18,10 @@ const User = new Schema({
     },
     tag: {
         type: String,
+        required: true,
+    },
+    guilds: {
+        type: Array,
         required: true,
     },
 });

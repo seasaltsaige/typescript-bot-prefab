@@ -14,6 +14,13 @@ router.get("/:uId", async (req, res) => {
     return res.send(User);
 });
 
+router.get("/user/@me", async (req, res) => {
+    if (req.user)
+        res.send(req.user);
+    else
+        res.status(401).send({ status: 401, message: "Unauthorized" });
+});
+
 router.delete("/delete/:uId", async (req, res) => {
 
     const { uId } = req.params;
