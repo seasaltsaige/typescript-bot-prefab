@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { botGuilds, getSameGuilds } from "../utils/api";
-import { UserI, Users } from "../database/models";
+import { Guilds, UserI, Users } from "../database/models";
 
 const router = Router();
 
@@ -29,6 +29,20 @@ router.get("/guilds", async (req, res) => {
         });
     } else
         return res.status(401).send({ status: 401, message: "Unauthorized" });
+
+});
+
+router.post("/guild/:id", async (req, res) => {
+
+    const { id } = req.params;
+
+    const newDoc = await Guilds.create({
+        gId: id,
+        logChannel: "none",
+        prefix: "?",
+    });
+
+    return newDoc;
 
 });
 

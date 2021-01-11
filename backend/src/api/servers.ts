@@ -1,7 +1,27 @@
 import { Router } from "express";
-import { Guilds, UserI, Users } from "../database/models";
+import { GuildI, Guilds, UserI, Users } from "../database/models";
 import { botGuilds, getManagedGuilds } from "../utils/api";
 const router = Router();
+
+
+router.post("/:id/prefix", async (req, res) => {
+    const { id } = req.params;
+    const { prefix } = req.body;
+
+    const guild = <GuildI>(await Guilds.findOne({ gId: id }));
+    if (guild === null) return res.status(404).send({ status: 404, message: "Guild not found" });
+
+    guild.prefix = prefix;
+
+    try {
+        await guild.updateOne(guild);
+    } catch (err) {
+        return res.status(500).send({ status: 500, message: "Internal Server Error" });
+    }
+
+    return res.send(guild);
+
+});
 
 router.get("/:id", async (req, res) => {
 
@@ -9,13 +29,7 @@ router.get("/:id", async (req, res) => {
 
     let Guild = await Guilds.findOne({ gId });
 
-    if (Guild === null) {
-        Guild = await Guilds.create({
-            gId,
-            prefix: "?",
-            logChannel: "none",
-        });
-    }
+    if (Guild === null) return res.status(404).send({ status: 404, message: "Guild not found" }); //{
 
     return res.send(Guild);
 });

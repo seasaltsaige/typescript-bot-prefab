@@ -25,8 +25,8 @@ export function getManagedGuilds() {
     });
 }
 
-export function allBotGuilds() {
-    return axios.get(`${baseURL}/bot/guilds/all`, {
-        withCredentials: true,
+export function updatePrefix(id: string, prefix: string) {
+    return axios.post(`${baseURL}/servers/${id}/prefix`, {
+        prefix,
     });
 }

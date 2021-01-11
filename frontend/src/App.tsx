@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import { NavBar } from "./components";
 import { Switch, Route } from "react-router-dom";
-import { Dashboard, HomePage } from './pages';
+import { Menu, HomePage, Dashboard } from './pages';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact={true} component={HomePage} />
-        <Route path="/dashboard" exact={false} component={Dashboard} />
+        <Route path="/menu" exact={false} component={Menu} />
         <Route path="/dashboard/:id" exact={true} component={Dashboard} />
       </Switch>
     </div>

@@ -1,4 +1,57 @@
-.settings {
+.back-button {
+    margin: 20px;
+}
+
+.prefix {
     justify-content: center;
-    justify-self: center;
+    text-align: center;
+    
+}
+
+.popup-content {
+    background-color: #2C2F33;
+    width: 20%;
+    height: 20%;
+}
+
+.enter-prefix {
+    align-content: center;
+    justify-content: center;
+    margin-top: 1vh;
+    width: 17.2vw;
+    background-color: #23272A;
+    border: #23272A;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.update-prefix {
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 42.4vw;
+    width: 15vw;
+    font-weight: bold;
+}
+
+.prefix-submit {
+    margin-top: 1vh;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    font-weight: bold;
+}
+
+.enter-prefix:active {
+    background-color: #494e52;
+    color: white;
+}
+
+.enter-prefix:enabled {
+    background-color: #494e52;
+    color: white;
+}
+
+.prefix-text {
+    font-weight: bold;
 }

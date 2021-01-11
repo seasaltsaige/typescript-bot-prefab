@@ -1,3 +1,7 @@
+head {
+    font-family: 'Poppins', sans-serif;
+}
+
 .guildImages {
     display: flex;
     flex-direction: column;
@@ -20,6 +24,33 @@
 
 .guildImage:hover {
     border-radius: 30% !important;
+}
+
+.guildDiv {
+    display: flex;
+    width: 70px;
+    height: 70px;
+    order: inherit;
+    flex-direction: column;
+    margin: 5px;
+    margin-left: 0px;
+    font-weight: 500;
+    line-height: 1.2rem;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    background-color: #2C2F33;
+    border-radius: 50%;
+    font-size: 40px;
+    justify-content: center;
+    padding-bottom: 5px;
+    transition: ease-out 0.3s;
+    user-select: none;
+}
+
+.guildDiv:hover {
+    border-radius: 30% !important;
+    cursor: pointer;
 }
 
 .profile {
@@ -88,4 +119,22 @@
 
 .dropdown-item:hover {
     background-color: #43b581
+}
+
+.server-popup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.server-select {
+    display: table-row;
+    text-align: center;
+}
+
+.invite-text {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
 }

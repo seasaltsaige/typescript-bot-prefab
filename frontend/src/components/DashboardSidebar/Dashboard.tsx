@@ -5,8 +5,9 @@ import { ReactComponent as Plus } from "../../Images/plus_sign.svg"
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import "./Dashboard.css";
+import getAbbreviation from "../../utils/functions";
 
-function Dashboard(props: any) {
+function DashboardSidebar(props: any) {
 
     const user = props.user;
     const servers = props.servers;
@@ -22,11 +23,20 @@ function Dashboard(props: any) {
                 roundedCircle />
 
             {servers!.map((data) => (
-                <Image
-                    className={`guildImage ${data.id}`}
-                    src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=64`}
-                    onClick={() => window.location.href = `http://localhost:3000/dashboard/${data.id} `}
-                    roundedCircle />
+                `https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=64`.includes("null")
+                    ?
+                    <div
+                        className={`guildDiv ${data.id}`}
+                        onClick={() => window.location.href = `http://localhost:3000/dashboard/${data.id} `}
+                    >
+                        {getAbbreviation(data.name)}
+                    </div>
+                    :
+                    <Image
+                        className={`guildImage ${data.id}`}
+                        src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=64`}
+                        onClick={() => window.location.href = `http://localhost:3000/dashboard/${data.id} `}
+                        roundedCircle />
             ))}
             <Popup
                 trigger={
@@ -35,27 +45,33 @@ function Dashboard(props: any) {
                 position="right center"
                 modal>
 
-                <span className="server-popup">
+                <h3 className="invite-text">Invite Bot to your Server!</h3>
+
+                <div className="server-popup">
+
                     <SplitButton
+                        className="server-select"
                         variant="dark"
-                        title="Select a Server">
+                        title="Select a Server"
+                    >
                         {
                             managed.map((s, index) => (
                                 <Dropdown.Item
                                     eventKey={s.id}
                                     key={index}
-                                    className={`dropdown-item ${s.id}`} >
+                                    className={`dropdown-item ${s.id}`}
+                                    href={`https://discord.com/oauth2/authorize?client_id=776538408780038144&scope=bot&permissions=8&guild_id=${s.id}`} >
                                     {s.name}
                                 </Dropdown.Item>
                             ))
                         }
                     </SplitButton>
 
-                </span>
+                </div>
             </Popup>
         </div>
     );
 
 }
 
-export default Dashboard;
+export default DashboardSidebar;
