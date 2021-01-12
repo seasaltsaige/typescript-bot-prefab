@@ -44,8 +44,6 @@ function Dashboard(props: any) {
         }).then(({ data }) => {
             setServers(data.sameGuilds);
             const currGuild = data.sameGuilds.find(g => g.id === dashId);
-            alert(currGuild);
-            alert(dashId);
             setCurrentGuild(currGuild.name);
             return getManagedGuilds();
         }).then(({ data }) => {
@@ -75,29 +73,10 @@ function Dashboard(props: any) {
             </div>
 
             <div className="backplate">
-                {/* {console.log(currentGuild)} */}
-            </div>
 
-            {/* <div className="prefix">
 
-                <h3 className="prefix-text">Current Prefix: {formPrefix}</h3>
-
-                <InputGroup className="update-prefix">
-
-                    <Button
-                        variant="dark"
-                        className="prefix-submit"
-                        onClick={() => updatePrefix(dashId, prefix)}
-                    >Submit</Button>
-                    <FormControl
-                        className="enter-prefix"
-                        onChange={(e) => setPrefix(e.target.value)} />
-                </InputGroup>
 
             </div>
-            <div className="logs">
-                aaa
-            </div> */}
         </div>
     )
 
