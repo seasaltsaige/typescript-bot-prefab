@@ -22,28 +22,28 @@ router.get("/guilds", async (req, res) => {
 
     if (user !== null) {
         const userGuilds = user.guilds;
-        const sameGuilds = getSameGuilds(userGuilds, guilds.data);
+        const sameGuilds = getSameGuilds(userGuilds, guilds);
         return res.send({
             sameGuilds,
-            allBotGuilds: guilds.data,
+            allBotGuilds: guilds,
         });
     } else
         return res.status(401).send({ status: 401, message: "Unauthorized" });
 
 });
 
-router.post("/guild/:id", async (req, res) => {
+// router.post("/guild/:id", async (req, res) => {
 
-    const { id } = req.params;
+//     const { id } = req.params;
 
-    const newDoc = await Guilds.create({
-        gId: id,
-        logChannel: "none",
-        prefix: "?",
-    });
+//     const newDoc = await Guilds.create({
+//         gId: id,
+//         logChannel: "none",
+//         prefix: "?",
+//     });
 
-    return newDoc;
+//     return newDoc;
 
-});
+// });
 
 export default router;

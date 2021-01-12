@@ -1,4 +1,32 @@
+
+@font-face {
+    font-family: Whitney;
+    font-weight: 700;
+    src: url("http://localhost:3000/thirdwhitney.woff") format("woff");
+}
+
 html body {
+    font-family: Whitney;
+    font-weight: 700;
     background: #2C2F33;
     color: white;
 }
+
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    background: #3c3f42;
+    border-radius: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    background: #515457;
+    transition: 1s ease-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #626669;
+} 

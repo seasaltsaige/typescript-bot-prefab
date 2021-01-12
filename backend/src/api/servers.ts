@@ -38,7 +38,7 @@ router.get("/all/managed", async (req, res) => {
     //@ts-ignore
     const user: UserI = await Users.findOne({ uId: req.user.uId });
     if (user !== null) {
-        const managedGuilds = getManagedGuilds(user.guilds);
+        const managedGuilds = await getManagedGuilds(user.guilds);
         res.send(managedGuilds);
     } else
         return res.status(401).send({ status: 401, message: "Unauthorized" });

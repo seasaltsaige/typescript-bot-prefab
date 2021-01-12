@@ -1,6 +1,10 @@
-.back-button {
-    margin: 20px;
+:root {
+    --side-bar-width: 108px;
+    --full-screen-width: 100%;
+    --back-margin: 3vw;
+    --open-space: calc(var(--full-screen-width) - var(--side-bar-width) - (2 * var(--back-margin)));
 }
+
 
 .prefix {
     justify-content: center;
@@ -54,4 +58,19 @@
 
 .prefix-text {
     font-weight: bold;
+}
+
+.backplate {
+    float: left;
+    margin-top: 1vh;
+    margin-left: var(--back-margin);
+    border-radius: 20px;
+    height: 90vh;
+    width: var(--open-space);
+    background-color: #41464b;
+}
+
+.guild-name {
+    height: 5vh;
+    text-align: center;
 }

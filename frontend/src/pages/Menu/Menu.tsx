@@ -12,7 +12,6 @@ function Menu(props: any) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [servers, setServers] = useState([]);
-    const [allServers, setAllServers] = useState([]);
     const [nonMutual, setNonMutual] = useState([]);
 
     useEffect(() => {
@@ -21,19 +20,9 @@ function Menu(props: any) {
             return getGuilds();
         }).then(({ data }) => {
             setServers(data.sameGuilds);
-            setAllServers(data.allBotGuilds);
             return getManagedGuilds();
         }).then(({ data }) => {
-            const managedGuilds = data;
-            const unique = [];
-            const userArrIds = managedGuilds.map(o => o.id);
-            const botArrIds = allServers.map(o => o.id);
-            const uniqueIds = userArrIds.filter((o) => botArrIds.indexOf(o) === -1);
-            for (let i = 0; i < managedGuilds.length; i++) {
-                const userArrObject = managedGuilds[i];
-                if (uniqueIds.includes(userArrObject.id)) unique.push(userArrObject);
-            }
-            setNonMutual(unique);
+            setNonMutual(data);
             setLoading(false);
         }).catch((err) => {
             console.log(err);
@@ -48,7 +37,8 @@ function Menu(props: any) {
             <DashboardSidebar
                 user={user}
                 servers={servers}
-                managed={nonMutual} />
+                managed={nonMutual}
+                currentPage={null} />
 
         </div>
     );

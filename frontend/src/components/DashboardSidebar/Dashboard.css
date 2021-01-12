@@ -1,9 +1,6 @@
-head {
-    font-family: 'Poppins', sans-serif;
-}
-
 .guildImages {
     display: flex;
+    float: left;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -18,8 +15,10 @@ head {
 .guildImage {
     order: inherit;
     flex-direction: column;
+    border-radius: 50%;
+    cursor: pointer;
     margin: 5px;
-    transition: ease-out 0.3s;
+    transition: ease-out 0.2s;
 }
 
 .guildImage:hover {
@@ -28,12 +27,12 @@ head {
 
 .guildDiv {
     display: flex;
-    width: 70px;
-    height: 70px;
+    width: 68px;
+    height: 68px;
     order: inherit;
     flex-direction: column;
     margin: 5px;
-    margin-left: 0px;
+    margin-left: 3px;
     font-weight: 500;
     line-height: 1.2rem;
     text-align: center;
@@ -41,10 +40,10 @@ head {
     align-content: center;
     background-color: #2C2F33;
     border-radius: 50%;
-    font-size: 40px;
+    font-size: 35px;
     justify-content: center;
     padding-bottom: 5px;
-    transition: ease-out 0.3s;
+    transition: ease-out 0.2s;
     user-select: none;
 }
 
@@ -53,10 +52,28 @@ head {
     cursor: pointer;
 }
 
+.guildDiv .hover-text {
+    visibility: hidden;
+    width: max-content;
+    height: max-content;
+    /* border-radius: 10px; */
+    background-color: #232629;
+    padding: 5px 0;
+    text-align: center;
+      
+    position: absolute;
+    z-index: 3;
+    transform: translateX(100%);
+}
+
+.guildDiv:hover .hover-text {
+    visibility: visible;
+}
+
 .profile {
     padding: 5px;
     margin-bottom: 15px;
-    transition: ease-out 0.3s;
+    transition: ease-out 0.2s;
 }
 
 .profile:hover {
@@ -68,15 +85,22 @@ head {
     border-radius: 50%;
     background-color: #2C2F33;
     stroke: #43b581;
+    stroke-width: 2.5;
     fill: #43b581;
-    height: 75px;
-    width: 75px;
-    transition: ease-out 0.3s;
+    width: 70px;
+    height: 70px;
+    margin-left: 2px;
+    transition: ease-out 0.2s;
 }
 
 .add-to-server:hover {
     border-radius: 30%;
     cursor: pointer;
+    background-color: #43b581;
+    fill: white;
+    border-color: white;
+    stroke: white;
+    stroke-width: 2.5;
 }
 
 @keyframes anvil {
@@ -104,8 +128,8 @@ head {
     border: 5px #2C2F33;
     width: 50vw;
     height: 45vh;
-    animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+    animation: anvil 0.2s cubic-bezier(0.28, 0.2, 0.26, 0.9) forwards;
+    -webkit-animation: anvil 0.2s cubic-bezier(0.28, 0.2, 0.26, 0.9) forwards;
 }
 
 .dropdown-menu {
@@ -134,7 +158,34 @@ head {
 }
 
 .invite-text {
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
     text-align: center;
+}
+
+.wrapper {
+    float: left;
+    width: 0px;
+    height: 0px;
+}
+
+.item {
+    visibility: hidden;
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 0px;
+
+    border-radius: 0 5px 5px 0;
+
+    margin-left: -15px;
+    margin-top: 19px;
+    background-color: white;
+    opacity: 1;
+    transform: none;
+    transition: 0.3s ease-in-out;
+}
+
+.profile-div:hover .item {
+    visibility: visible;
+    width: 6px;
+    height: 37px;
 }
