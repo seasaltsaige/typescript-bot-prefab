@@ -1,0 +1,161 @@
+:root {
+    --side-bar-width: 108px;
+    --full-screen-width: 100%;
+    --back-margin: 3vw;
+    --open-space: calc(var(--full-screen-width) - var(--side-bar-width) - (2 * var(--back-margin)));
+}
+
+h4 {
+    margin-bottom: 0px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    float: left;
+    margin-top: 1vh;
+    margin-left: var(--back-margin);
+    border-radius: 20px;
+    height: 90vh;
+    width: var(--open-space);
+    background-color: #3b3f44;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    width: 5vw;
+    height: 1.8vw;
+    background-color: #282b2e;
+    cursor: pointer;
+    margin-left: 3vw;
+    border-radius: 12px;
+}
+
+.back-arrow {
+    stroke: grey;
+    stroke-width: 1px;
+    width: 1.3vw;
+    height: 1.3vw;
+    stroke-width: 5px;
+    margin-left: 0.35vw;
+    float: left;
+}
+
+.back-text {
+    margin-left: 0.35vw;
+    font-weight: bolder;
+    user-select: none;
+}
+
+.channel-selector {
+
+    border-radius: 20px;
+    width: 30vw;
+    height: 80vh;
+    margin-left: 3vw;
+    background-color: #282b2e;
+    overflow: hidden;
+}
+
+.channel-selector-text {
+    color: white;
+    margin-top: 2vh;
+    font-weight: bolder;
+    text-align: center;
+    user-select: none;
+}
+
+.channel-description-text {
+    text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    max-width: 393;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.8;
+    user-select: none;
+}
+
+.all-channels {
+    float: right;
+    margin-top: 2vh;
+    margin-right: 1vw;
+    background-color: #3b3f44;
+    text-align: center;
+    width: 14vw;
+    height: 62vh;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.channel {
+    display: flex;
+    margin-left: 0.9vw;
+    align-items: center;
+    font-weight: bold;
+    width: 12vw;
+    height: 3vh;
+
+    min-width: 196px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+}
+
+.channel:hover {
+    background-color: #45494e;
+}
+
+.channel:active {
+    background-color: #4e5358;
+}
+
+.current-channel {
+    float: left;
+    margin-top: 19.4vh;
+    margin-left: 1vw;
+    width: 13vw;
+    height: 25vh;
+    background-color: #3b3f44;
+    border-radius: 10px;
+    text-align: center;
+    user-select: none;
+}
+
+.current-log {
+    margin-top: 3vh;
+    font-weight: bolder;
+}
+
+.updated-log {
+    font-weight: bolder;
+}
+
+.logchannel-name {
+    font-weight: bolder;
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 3vh;
+    justify-content: center;
+}
+
+.reset-button {
+    margin-right: 1vw;
+    font-weight: bolder;
+}
+
+.submit-button {
+    margin-left: 1vw;
+        font-weight: bolder;
+}

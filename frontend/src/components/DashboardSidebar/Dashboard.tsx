@@ -1,12 +1,20 @@
 //@ts-nocheck
 import React, { useEffect } from "react";
-import { Dropdown, DropdownButton, Image, OverlayTrigger, SplitButton, Tooltip } from "react-bootstrap";
+import { Dropdown, DropdownButton, Image as Img, OverlayTrigger, SplitButton, Tooltip } from "react-bootstrap";
 import { ReactComponent as Plus } from "../../Images/plus_sign.svg"
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import "./Dashboard.css";
 import getAbbreviation from "../../utils/functions";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
+
+function imageExists(url: string, callback) {
+    var img = new Image();
+    img.onload = function () { callback(true); };
+    img.onerror = function () { callback(false); };
+    img.src = url;
+}
+
 
 function DashboardSidebar(props: any) {
 
@@ -16,17 +24,50 @@ function DashboardSidebar(props: any) {
     const currentPage = props.currentPage;
 
     useEffect(() => {
+
+        const avatarImage = document.getElementById("profile");
+        if (avatarImage) {
+            avatarImage.onpointerenter = (() => {
+                const img = new Image();
+                img.onerror = () => avatarImage.src = avatarImage.src.replace(".gif", ".png");
+                img.onload = () => avatarImage.src = avatarImage.src.replace(".png", ".gif");
+                img.src = avatarImage.src.replace(".png", ".gif");
+            });
+            avatarImage.onpointerleave = (() => avatarImage.src = avatarImage.src.replace(".gif", ".png"));
+        }
+
+        const guildImages = document.getElementsByClassName("guildImage");
+
+        if (guildImages.length > 0) {
+            for (const guildImage of guildImages) {
+                const gImage = document.getElementById(guildImage.id);
+                if (gImage) {
+                    gImage.onpointerenter = (() => {
+                        const img = new Image();
+                        img.onerror = () => gImage.src = gImage.src.replace(".gif", ".png");
+                        img.onload = () => gImage.src = gImage.src.replace(".png", ".gif");
+                        img.src = gImage.src.replace(".png", ".gif");
+                    });
+                    gImage.onpointerleave = (() => gImage.src = gImage.src.replace(".gif", ".png"));
+                }
+            }
+        }
+
         if (currentPage !== undefined) {
             const element = document.getElementById(currentPage);
             if (element) {
                 element.style.borderRadius = "30%";
+                if (element.attributes[1].nodeValue?.includes("guildDiv")) {
+                    element.style.backgroundColor = "#7289da";
+                }
+
             }
             const pill = document.getElementById(`item ${currentPage}`);
             if (pill) {
                 pill.style.visibility = "visible";
                 pill.style.width = "6px";
-                pill.style.height = "60px";
-                pill.style.marginTop = "7px"
+                pill.style.height = "50px";
+                pill.style.marginTop = "12px"
             }
         }
     }, []);
@@ -35,10 +76,12 @@ function DashboardSidebar(props: any) {
 
         <div className="guildImages">
 
-            <Image
+            <Img
                 src={user.avatar}
+                id="profile"
                 className="profile"
-                roundedCircle />
+                roundedCircle
+                onClick={() => window.location.href = "/dashboard"} />
 
             {servers!.map((data) => (
                 `https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=64`.includes("null")
@@ -49,26 +92,18 @@ function DashboardSidebar(props: any) {
                             aria-hidden="true">
                             <span
                                 className={`item ${data.id}`}
-                                id={`item ${data.id}`}
-                                style={
-                                    {
-                                        // visibility: "hidden",
-                                        opacity: 1,
-                                        height: "40px",
-                                        transform: "none",
-                                    }
-                                } />
+                                id={`item ${data.id}`} />
                         </div>
                         <div
                             id={data.id}
                             className={`guildDiv ${data.id}`}
                             onClick={() => window.location.href = `http://localhost:3000/dashboard/${data.id} `}
+                            title={data.name}
                         >
                             {getAbbreviation(data.name)}
                         </div>
                     </div>
                     :
-
                     <div className="profile-div">
                         <div
                             className="pill wrapper"
@@ -76,22 +111,17 @@ function DashboardSidebar(props: any) {
                             <span
                                 className={`item ${data.id}`}
                                 id={`item ${data.id}`}
-                                style={
-                                    {
-                                        // visibility: "hidden",
-                                        opacity: 1,
-                                        height: "40px",
-                                        transform: "none",
-                                    }
-                                } />
+                            />
                         </div>
                         <img
-                            id={data.id}
+                            id={`${data.id} guildImage`}
                             className={`guildImage ${data.id}`}
                             src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=64`}
                             onClick={() => window.location.href = `http://localhost:3000/dashboard/${data.id}`}
-                            key={data.id}>
+                            key={data.id}
+                            title={data.name} >
                         </img>
+
                     </div>
             ))}
 
@@ -100,6 +130,7 @@ function DashboardSidebar(props: any) {
                 trigger={
                     <Plus
                         className="add-to-server"
+                        title="Add to a new server"
                     />
                 }
                 position="center center"

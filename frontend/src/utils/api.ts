@@ -30,3 +30,19 @@ export function updatePrefix(id: string, prefix: string) {
         prefix,
     });
 }
+
+export function getChannels(id: string) {
+    return axios.get(`${baseURL}/servers/${id}/channels`, {
+        withCredentials: true,
+    });
+}
+
+export function updateSettings(settings: any) {
+    return axios.post(`${baseURL}/servers/${settings.gId}/update`, {
+        settings,
+    });
+}
+
+// export function test(id: string) {
+//     return axios.post(`${baseURL}/servers/${id}/message`)
+// }

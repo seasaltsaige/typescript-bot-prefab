@@ -5,7 +5,7 @@ import { userDetails } from "../../utils/api";
 import "./NavBar.css";
 
 function login() {
-    window.location.href = "http://localhost:4000/api/login/redirect";
+    window.location.href = "http://localhost:4000/api/login";
 }
 
 function dashboard() {

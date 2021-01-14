@@ -19,31 +19,44 @@ function updatePrefix(dashId: string, newPrefix: string) {
     }
 }
 
+const menuCategories = [
+    "general",
+    "moderation",
+    "logging",
+    "roles",
+    "levels",
+    "commands",
+];
+
+const menuDesctions = [
+    "General information about the bot",
+    "Configure anything from auto-moderation to your muted role",
+    "Change information about logging",
+    "Configure auto roles and more",
+    "Change settings on leveling progression",
+    "Enable and disable certain bot commands",
+];
+
 function Dashboard(props: any) {
 
     const dashId = props.match.params.id;
+    // console.log(dashId);
+    // console.log(props.match);
 
-    const [settings, setSettings] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [prefix, setPrefix] = useState("");
-    const [formPrefix, setFormPrefix] = useState("");
     const [user, setUser] = useState(null);
     const [servers, setServers] = useState([]);
     const [nonMutual, setNonMutual] = useState([]);
     const [currentGuild, setCurrentGuild] = useState("");
 
     useEffect(() => {
-        getServerSettings(dashId).then(({ data }) => {
-            setSettings(data);
-            setPrefix(data.prefix);
-            setFormPrefix(data.prefix);
-            return userDetails()
-        }).then(({ data }) => {
+        userDetails().then(({ data }) => {
             setUser(data);
             return getGuilds();
         }).then(({ data }) => {
             setServers(data.sameGuilds);
             const currGuild = data.sameGuilds.find(g => g.id === dashId);
+            // console.log(currGuild);
             setCurrentGuild(currGuild.name);
             return getManagedGuilds();
         }).then(({ data }) => {
@@ -54,8 +67,6 @@ function Dashboard(props: any) {
             window.location.href = "http://localhost:3000";
             setLoading(false);
         });
-
-
     }, []);
 
     return !loading && (
@@ -73,8 +84,16 @@ function Dashboard(props: any) {
             </div>
 
             <div className="backplate">
-
-
+                {menuCategories.map((c, i) => (
+                    <div className={`${c} category`}>
+                        <h3 className="category-text">View the {c} category</h3>
+                        <h5 className="description-text">{menuDesctions[i]}</h5>
+                        <Button
+                            variant="dark"
+                            className="category-button"
+                            onClick={() => window.location.href = `/dashboard/${dashId}/${c}`}>View Category</Button>
+                    </div>
+                ))}
 
             </div>
         </div>

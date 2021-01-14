@@ -1,23 +1,20 @@
 //@ts-nocheck
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { NavBar } from "./components";
 import { Switch, Route } from "react-router-dom";
-import { Menu, HomePage, Dashboard } from './pages';
+import { Menu, HomePage, Dashboard, Configuration } from './pages';
 
 function App() {
-
-  useEffect(() => {
-    console.log("test");
-  }, []);
 
   return (
     <div className="mainDiv">
       <NavBar />
       <Switch>
-        <Route path="/" exact={true} component={HomePage} />
-        <Route path="/dashboard" exact={true} component={Menu} />
-        <Route path="/dashboard/:id" exact={true} component={Dashboard} />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/dashboard" exact component={Menu} />
+        <Route path="/dashboard/:id/:category" exact component={Configuration} />
+        <Route path="/dashboard/:id" exact component={Dashboard} />
       </Switch>
     </div>
   );

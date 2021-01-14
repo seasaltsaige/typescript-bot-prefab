@@ -34,6 +34,11 @@ app.use(
     }),
 );
 
+import http from "http";
+import WebSocket from "./WebSocket";
+const server = http.createServer(app);
+WebSocket.setSocket(server);
+
 app.use(passport.initialize());
 app.use(passport.session());
 

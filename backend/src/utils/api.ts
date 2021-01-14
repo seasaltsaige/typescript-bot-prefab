@@ -9,6 +9,16 @@ async function botGuilds() {
     return response;
 }
 
+async function guildChannels(guildId: string) {
+    const response = await axios.get(`${mainRoute}/guilds/${guildId}/channels`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bot ${token}`,
+        },
+    });
+    return response.data;
+}
+
 function getSameGuilds(userGuilds: any[], botGuilds: GuildI[]) {
 
     return userGuilds.filter(
@@ -42,4 +52,5 @@ export {
     botGuilds,
     getSameGuilds,
     getManagedGuilds,
+    guildChannels,
 }

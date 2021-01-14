@@ -3,7 +3,10 @@ import { Document, model, Schema } from "mongoose";
 export interface GuildI extends Document {
     gId: string;
     prefix: string;
-    logChannel: string;
+    logChannel: {
+        id: string;
+        name: string;
+    };
 }
 
 const Guild = new Schema({
@@ -16,7 +19,7 @@ const Guild = new Schema({
         required: true,
     },
     logChannel: {
-        type: String,
+        type: Object,
         required: true,
     },
 });

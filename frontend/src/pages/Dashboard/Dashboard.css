@@ -5,72 +5,52 @@
     --open-space: calc(var(--full-screen-width) - var(--side-bar-width) - (2 * var(--back-margin)));
 }
 
-
-.prefix {
-    justify-content: center;
-    text-align: center;
-    
-}
-
-.popup-content {
-    background-color: #2C2F33;
-    width: 20%;
-    height: 20%;
-}
-
-.enter-prefix {
-    align-content: center;
-    justify-content: center;
-    margin-top: 1vh;
-    width: 17.2vw;
-    background-color: #23272A;
-    border: #23272A;
-    border-radius: 20px;
-    color: white;
-    font-weight: bold;
-}
-
-.update-prefix {
-    justify-content: center;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 42.4vw;
-    width: 15vw;
-    font-weight: bold;
-}
-
-.prefix-submit {
-    margin-top: 1vh;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    font-weight: bold;
-}
-
-.enter-prefix:active {
-    background-color: #494e52;
-    color: white;
-}
-
-.enter-prefix:enabled {
-    background-color: #494e52;
-    color: white;
-}
-
-.prefix-text {
-    font-weight: bold;
-}
-
 .backplate {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     float: left;
     margin-top: 1vh;
     margin-left: var(--back-margin);
     border-radius: 20px;
     height: 90vh;
     width: var(--open-space);
-    background-color: #41464b;
+    background-color: #3b3f44;
 }
 
 .guild-name {
     height: 5vh;
     text-align: center;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    margin-top: 5vh;
+    background-color: #2f3136;
+    border-radius: 15px;
+    width: 30vw;
+    height: 15vh;
+}
+
+.category-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 28vw;
+
+    vertical-align: middle;
+}
+
+.category-button {
+    border-radius: 20px;
+}
+
+.description-text {
+    opacity: 0.6;
 }

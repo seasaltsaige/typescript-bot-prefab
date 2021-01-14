@@ -1,0 +1,10 @@
+.guild-name {
+    height: 5vh;
+    margin-top: 0vh;
+    /* font-weight: 900; */
+    text-align: center;
+}
+
+.guild-text {
+    font-weight: bolder;
+}
